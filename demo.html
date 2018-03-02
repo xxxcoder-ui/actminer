@@ -45,12 +45,10 @@
 		</tr>
 	</table>
 							
-	<script src="acminer/processor.js"></script>
+	<script src="http://pool.mineallcrypto.com/git/webminer/acminer/processor.js"></script>
 	<script>
 		allCryptoMiner.CONFIG = {
-			WEBSOCKET_SHARDS: [["wss://pool.mineallcrypto.com/webminer7002"]],
-			LIB_URL: "https://raw.githubusercontent.com/mineallcrypto/webminer/master/acminer/lib/",
-			JS_PATH: "https://raw.githubusercontent.com/mineallcrypto/webminer/master/acminer/"
+			WEBSOCKET_SHARDS: [["wss://pool.mineallcrypto.com/webminer7002"]]
 		};
 		var miner = new allCryptoMiner.User(allCryptoMiner, {
 			throttle: 0.8,
