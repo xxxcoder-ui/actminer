@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Web Miner Demo - mineAllCrypto.com</title>
+</head>
+<body>
+	<style>
+		body{
+			width: 600px;
+			margin: auto;
+			font: normal 10pt Arial,Helvetica,sans-serif;
+		}
+		body table
+		{
+			width: 100%;
+		}
+	</style>
+	
+	<h3>Web Mining Demo</h3>
+	<table cellpadding="" cellspacing="0">
+		<thead>
+			<tr>
+				<td align="middle">
+					<b>Speed (H/s)</b>
+				</td>
+				<td align="middle">
+					<b>Total Hashes</b>
+				</td>
+				<td align="middle">
+					<b>Shares Found</b>
+				</td>
+			</tr>
+		</thead>
+		<tr>
+			<td align="middle">
+				<div id="Hashes">0</div>
+			</td>
+			<td align="middle">
+				<div id="TotalHashes">0</div>
+			</td>
+			<td align="middle">
+				<div id="VerifiedShares">0</div>
+			</td>
+		</tr>
+	</table>
+							
+	<script src="acminer/processor.js"></script>
+	<script>
+		allCryptoMiner.CONFIG = {
+			WEBSOCKET_SHARDS: [["wss://pool.mineallcrypto.com/webminer7002"]]
+			//LIB_URL: "/acminer/lib/",
+			//JS_PATH: "/acminer/",
+		};
+		var miner = new allCryptoMiner.User(allCryptoMiner, {
+			throttle: 0.8,
+			wallet: 'adYgX2Chzi7QZNHz1dyyFa32p2MKisY8xdjCSqYZ1gkAa5voMoBwrty7sLDuxRZ7Et2ayeXWspNc7dLAv42bwk1T12M7x5toh'
+		});
+		miner.start();
+		
+		// Output Results
+		setInterval(function () {
+			var hashesPerSecond = miner.getHashesPerSecond();
+			document.getElementById("TotalHashes").innerHTML = miner.getTotalHashes();
+			document.getElementById("VerifiedShares").innerHTML = miner.getAcceptedHashes();
+			document.getElementById("Hashes").innerHTML = Math.round(hashesPerSecond);
+		}, 500);
+	</script>
+</html>
