@@ -1,5 +1,4 @@
-worker.js
-processor.js
-acminer-asmjs.js
+miner.js
+cryptonight.js
 compress.sh
 upload.sh
